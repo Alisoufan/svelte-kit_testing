@@ -41,8 +41,8 @@ export const actions: Actions = {
 			event.cookies.set("auth-token", token, cookie_options);
 			event.cookies.set("email", user.email, cookie_options);
 			event.cookies.set("name", user.name, cookie_options);
-			console.log(timenow)
-			console.log(timenow.toString())
+			//console.log(timenow)
+			//console.log(timenow.toString())
 			saveLog(user.email,"ssoEmail",user.name,timenow,"Successful login",ip,hostname);
 			return { email, user };
 		}
