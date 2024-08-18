@@ -33,7 +33,7 @@ export const actions: Actions = {
 		} 
 
 		if ("error" in user_data) {
-			saveLog(email,"","",timenow.toString(),user_data.error,ip,hostname)
+			saveLog(email,"","",timenow,user_data.error,ip,hostname)
 			return fail(400, { email, error: user_data.error });
 		} else {
 			const { token, user } = user_data;
@@ -41,8 +41,9 @@ export const actions: Actions = {
 			event.cookies.set("auth-token", token, cookie_options);
 			event.cookies.set("email", user.email, cookie_options);
 			event.cookies.set("name", user.name, cookie_options);
-		
-			saveLog(user.email,"ssoEmail",user.name,timenow.toString(),"Successful login",ip,hostname);
+			console.log(timenow)
+			console.log(timenow.toString())
+			saveLog(user.email,"ssoEmail",user.name,timenow,"Successful login",ip,hostname);
 			return { email, user };
 		}
 

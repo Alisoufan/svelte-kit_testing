@@ -1,9 +1,9 @@
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
-import { connect_to_db } from "$lib/server/db";
-
+//import { connect_to_db } from "$lib/server/db";
+import { connectToDatabase } from "$lib/server/db";
 export const load: LayoutServerLoad = async (event) => {
-	const connection = await connect_to_db();
+	const connection = await connectToDatabase();
 	if (!connection) throw error(500, "Database connection failed");
 
 	const name = event.cookies.get("name") ?? "";

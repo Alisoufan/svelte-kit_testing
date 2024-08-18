@@ -2,6 +2,11 @@ import bcrypt from "bcrypt";
 
 import { User_Model } from "./models";
 import { email_regexp } from "./utils";
+import { MongoClient, Db } from 'mongodb';
+import { connectToDatabase } from '$lib/server/db';
+
+const { db } = await connectToDatabase();
+const collection = db.collection('users'); // replace with your collection name
 
 export async function register_user(
 	email: string,
@@ -36,7 +41,8 @@ export async function register_user(
 	});
 
 	try {
-		await user.save();
+		await collection.insertOne(user );
+		//await user.save();
 		return { error: "" };
 	} catch (err) {
 		return { error: err?.toString() as string };
@@ -52,7 +58,7 @@ export async function verify_email(email: string): Promise<string> {
 		return "Please enter a valid email.";
 	}
 
-	const previous_user = await User_Model.findOne({ email });
+	const previous_user = await collection.findOne({ email });
 
 	if (previous_user) {
 		return "There is already an account with this email.";

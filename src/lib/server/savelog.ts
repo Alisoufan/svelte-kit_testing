@@ -9,7 +9,7 @@ export async function saveLog(
     email: string,
     ssoEmail?: string,
     name?: string,
-    dateAndTime?: string,
+    dateAndTime?: Date,
     result?: string,
     ip?: string,
     hostname?: string,

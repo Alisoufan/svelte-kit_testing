@@ -5,13 +5,13 @@ import mongoose from "mongoose";
 let client: MongoClient;
 let db: Db;
 
-export async function connect_to_db() {
-	try {
-		return await mongoose.connect(SECRET_MONGODB_URI);
-	} catch (err) {
-		console.log(err);
-	}
-}
+// export async function connect_to_db() {
+// 	try {
+// 		return await mongoose.connect(SECRET_MONGODB_URI);
+// 	} catch (err) {
+// 		console.log(err);
+// 	}
+// }
 
 export async function connectToDatabase() {
     if (!client || !db) {

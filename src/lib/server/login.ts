@@ -4,6 +4,11 @@ import jwt from "jsonwebtoken";
 import { SECRET_JWT_KEY } from "$env/static/private";
 import { email_regexp } from "./utils";
 import { User_Model } from "./models";
+import { MongoClient, Db } from 'mongodb';
+import { connectToDatabase } from '$lib/server/db';
+
+const { db } = await connectToDatabase();
+const collection = db.collection('users'); // replace with your collection name
 
 export async function login_user(
 	email: string,
@@ -32,7 +37,7 @@ async function get_user(
 		return { error: "Please enter a valid email." };
 	}
 
-	const user = await User_Model.findOne({ email });
+	const user = await collection.findOne({ email });
 
 	if (!user) {
 		return { error: "Email could not be found." };
