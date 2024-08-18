@@ -40,6 +40,7 @@ export const actions: Actions = {
 
 
 		// Redirect to the homepage
-		throw redirect(301, "/");
+		throw redirect(301, "/login");
+		
 	}
 };

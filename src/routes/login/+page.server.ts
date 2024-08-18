@@ -41,15 +41,9 @@ export const actions: Actions = {
 			event.cookies.set("auth-token", token, cookie_options);
 			event.cookies.set("email", user.email, cookie_options);
 			event.cookies.set("name", user.name, cookie_options);
-			
-			//console.log(format(now, 'dd.MM.yyyy HH:mm:ss', { locale: de }));
-			if (process.env.DebugFlag) console.log(timenow.toString());
-			
+		
 			saveLog(user.email,"ssoEmail",user.name,timenow.toString(),"Successful login",ip,hostname);
-			
-			throw redirect(303, '/');
 			return { email, user };
-			
 		}
 
 		
